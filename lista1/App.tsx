@@ -8,6 +8,7 @@ import Seis from './screens/Seis';
 import Sete from './screens/Sete';
 import Oito from './screens/Oito';
 import Nove from './screens/Nove';
+import Dez from './screens/Dez';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
     //<Seis />
     //<Sete />
     //<Oito />
-    <Nove />
+    //<Nove />
+    <Dez />
   );
 }
