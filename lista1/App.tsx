@@ -3,7 +3,9 @@ import React from 'react';
 //import Dois from './screens/Dois';
 //import Tres from './screens/Tres';
 //import Quatro from './screens/Quatro';
-import Cinco from './screens/Cinco';
+//import Cinco from './screens/Cinco';
+//import Seis from './screens/Seis';
+import Sete from './screens/Sete';
 
 export default function App() {
   return (
@@ -11,6 +13,8 @@ export default function App() {
     //<Dois />
     //<Tres />
     //<Quatro />
-    <Cinco />
+    //<Cinco />
+    //<Seis />
+    <Sete />
   );
 }
