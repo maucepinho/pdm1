@@ -1,3 +1,4 @@
+//deixado arquivo Onze para pesquisa futura
 import React from 'react';
 import {
   SafeAreaView,
