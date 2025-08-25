@@ -22,15 +22,15 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     flex: 0.5,
-    flexDirection: 'row', // Alinha os filhos em linha 
+    flexDirection: 'row',
   },
   topLeftView: {
-    flex: 0.5, // Ocupa 50% do pai 
-    backgroundColor: 'lime', // Define a cor [cite: 46]
+    flex: 0.5,
+    backgroundColor: 'lime',
   },
   topRightView: {
-    flex: 0.5, // Ocupa 50% do pai 
-    backgroundColor: 'aquamarine', // Define a cor [cite: 46]
+    flex: 0.5,
+    backgroundColor: 'aquamarine',
   },
   bottomView: {
     flex: 0.5,

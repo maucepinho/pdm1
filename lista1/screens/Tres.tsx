@@ -37,11 +37,11 @@ const styles = StyleSheet.create({
   },
   topRightTopView: {
     flex: 0.5,
-    backgroundColor: 'teal', // Nova cor [cite: 49]
+    backgroundColor: 'teal',
   },
   topRightBottomView: {
     flex: 0.5,
-    backgroundColor: 'skyblue', // Nova cor [cite: 49]
+    backgroundColor: 'skyblue',
   },
   bottomView: {
     flex: 0.5,

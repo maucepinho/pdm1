@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import Constants from 'expo-constants';
-import logo from '../assets/adaptive-icon.png'; // Importa a imagem 
+import logo from '../assets/adaptive-icon.png'; 
 
 export default function Quatro() {
   return (
@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
   topRightBottomView: { flex: 0.5, backgroundColor: 'skyblue' },
   bottomView: { flex: 0.5, backgroundColor: 'salmon' },
   logo: {
-    flex: 1, // Ocupa toda a área do pai [cite: 71]
-    width: undefined, // Necessário para o flex funcionar
-    height: undefined, // Necessário para o flex funcionar
-    resizeMode: 'contain', // Ajusta a imagem [cite: 72]
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    resizeMode: 'contain',
   },
 });

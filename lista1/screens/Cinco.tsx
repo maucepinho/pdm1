@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
 import Constants from 'expo-constants';
-import logo from '../assets/adaptive-icon.png'; // Importa a imagem
+import logo from '../assets/adaptive-icon.png';
 
 const showAlert = () => {
-  Alert.alert("Boa noite!"); // Exibe o alerta [cite: 99]
+  Alert.alert("Boa noite!");
 };
 
 export default function Cinco() {
@@ -45,30 +45,30 @@ const styles = StyleSheet.create({
   box: {
     flex: 0.5,
     backgroundColor: 'lime',
-    justifyContent: 'center', // Centraliza verticalmente 
-    alignItems: 'center', // Centraliza horizontalmente 
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   box2: {
     flex: 0.5,
     backgroundColor: 'teal',
-    justifyContent: 'center', // Centraliza verticalmente 
-    alignItems: 'center', // Centraliza horizontalmente 
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   box3: {
     flex: 0.5,
     backgroundColor: 'skyblue',
-    justifyContent: 'center', // Centraliza verticalmente 
-    alignItems: 'center', // Centraliza horizontalmente 
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   box4: {
     flex: 0.5,
     backgroundColor: 'salmon',
-    justifyContent: 'center', // Centraliza verticalmente 
-    alignItems: 'center', // Centraliza horizontalmente 
+    justifyContent: 'center',
+    alignItems: 'center', 
   },
   touchable: {
-    width: 64, // Dimensão da imagem 
-    height: 64, // Dimensão da imagem 
+    width: 64,
+    height: 64,
   },
   logo: {
     width: '100%',

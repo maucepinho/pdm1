@@ -14,15 +14,15 @@ export default function Um() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column', // Organiza os filhos em coluna 
-    paddingTop: Constants.statusBarHeight, // Adiciona padding para a barra de status [cite: 28]
+    flexDirection: 'column',
+    paddingTop: Constants.statusBarHeight,
   },
   topView: {
-    flex: 0.5, // Ocupa 50% do espaço 
-    backgroundColor: 'crimson', // Define a cor de fundo [cite: 18]
+    flex: 0.5,
+    backgroundColor: 'crimson',
   },
   bottomView: {
-    flex: 0.5, // Ocupa 50% do espaço 
-    backgroundColor: 'salmon', // Define a cor de fundo [cite: 18]
+    flex: 0.5,
+    backgroundColor: 'salmon',
   },
 });
