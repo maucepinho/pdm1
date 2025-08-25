@@ -2,13 +2,15 @@ import React from 'react';
 //import Um from './screens/Um';
 //import Dois from './screens/Dois';
 //import Tres from './screens/Tres';
-import Quatro from './screens/Quatro';
+//import Quatro from './screens/Quatro';
+import Cinco from './screens/Cinco';
 
 export default function App() {
   return (
     //<Um />
     //<Dois />
     //<Tres />
-    <Quatro />
+    //<Quatro />
+    <Cinco />
   );
 }
