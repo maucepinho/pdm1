@@ -1,4 +1,3 @@
-// src/services/viaCep.ts
 import axios from 'axios';
 
 const api = axios.create({

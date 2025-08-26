@@ -15,7 +15,7 @@ const ConsultaCep = () => {
   const { endereco, erro, buscarCep } = useCep();
 
   const handleBuscar = () => {
-    Keyboard.dismiss(); // Oculta o teclado ao buscar
+    Keyboard.dismiss();
     buscarCep(cep);
   };
 
@@ -54,11 +54,10 @@ const ConsultaCep = () => {
   );
 };
 
-// Estilos do componente
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#282c34', // Fundo cinza escuro
+    backgroundColor: '#282c34',
     paddingHorizontal: 20,
     paddingTop: 40,
     justifyContent: 'center',
@@ -94,10 +93,10 @@ const styles = StyleSheet.create({
   resultText: {
     color: '#FFF',
     fontSize: 16,
-    lineHeight: 24, // Espaçamento entre as linhas
+    lineHeight: 24, 
   },
   errorText: {
-    color: '#FF6347', // Cor vermelha para o erro
+    color: '#FF6347', 
     fontSize: 16,
     fontWeight: 'bold',
   }
