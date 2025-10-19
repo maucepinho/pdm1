@@ -24,7 +24,7 @@ export default function App() {
     <NavigationContainer>
       <Drawer.Navigator
         initialRouteName="Um"
-        // 2. Adicionar a propriedade screenOptions para configurar os ícones [cite: 113, 114, 115, 117, 118]
+        // 2. Adicionar a propriedade screenOptions para configurar os ícones
         screenOptions={({ route }) => ({
           drawerIcon: ({ focused, color, size }) => {
             let iconName = '';
