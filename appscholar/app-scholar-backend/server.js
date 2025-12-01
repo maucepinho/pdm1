@@ -1,3 +1,4 @@
+require('dotenv').config();
 // server.js
 const express = require('express');
 const cors = require('cors');
@@ -10,11 +11,11 @@ const port = 3000;
 // --- CONEXÃO COM O POSTGRESQL ---
 // !!! ATENÇÃO: Substitua com suas credenciais !!!
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'appscholar',
-    password: '123',
-    port: 5434,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
 });
 
 app.use(cors());
@@ -121,6 +122,52 @@ app.get('/disciplines', async (req, res) => {
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: 'Erro ao buscar disciplinas' });
+    }
+});
+
+// --- ROTAS PARA BOLETIM/NOTAS ---
+
+// 1. Lançar Notas (Para popular o banco)
+app.post('/grades', async (req, res) => {
+    const { student_id, discipline_id, grade1, grade2 } = req.body;
+    
+    // Calcula a média simples
+    const average = (parseFloat(grade1) + parseFloat(grade2)) / 2;
+
+    try {
+        const result = await pool.query(
+            'INSERT INTO grades (student_id, discipline_id, grade1, grade2, average) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            [student_id, discipline_id, grade1, grade2, average]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Erro ao lançar nota' });
+    }
+});
+
+// 2. Consultar Boletim de um Aluno Específico (API 2)
+app.get('/students/:id/bulletin', async (req, res) => {
+    const { id } = req.params;
+    try {
+        // Faz o JOIN entre Notas, Disciplinas e Professores para montar o boletim completo
+        const result = await pool.query(`
+            SELECT 
+                d.name as discipline_name,
+                t.name as teacher_name,
+                g.grade1,
+                g.grade2,
+                g.average
+            FROM grades g
+            JOIN disciplines d ON g.discipline_id = d.id
+            JOIN teachers t ON d.teacher_id = t.id
+            WHERE g.student_id = $1
+        `, [id]);
+        
+        res.status(200).json(result.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Erro ao buscar boletim' });
     }
 });
 

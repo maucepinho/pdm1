@@ -7,6 +7,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import StudentScreen from './src/screens/StudentScreen';
 import TeacherScreen from './src/screens/TeacherScreen';
 import DisciplineScreen from './src/screens/DisciplineScreen';
+import BulletinScreen from './src/screens/BulletinScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
         <Stack.Screen name="Student" component={StudentScreen} options={{ title: 'Alunos' }} />
         <Stack.Screen name="Teacher" component={TeacherScreen} options={{ title: 'Professores' }} />
         <Stack.Screen name="Discipline" component={DisciplineScreen} options={{ title: 'Disciplinas' }} />
+        <Stack.Screen name="Bulletin" component={BulletinScreen} options={{ title: 'Boletim Acadêmico' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
