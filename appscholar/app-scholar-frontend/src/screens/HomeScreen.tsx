@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Button, StyleSheet, Text } from 'react-native';
+import { View, Button, Text } from 'react-native';
+import styles from '../styles/homeStyles';
 
 const HomeScreen = ({ navigation }: any) => {
   return (
@@ -25,6 +26,13 @@ const HomeScreen = ({ navigation }: any) => {
       </View>
       <View style={styles.btnContainer}>
         <Button
+          title="Gerenciar Cursos"
+          onPress={() => navigation.navigate('CourseList')}
+          color="#6200ee"
+        />
+      </View>
+      <View style={styles.btnContainer}>
+        <Button
           title="Consultar Boletim"
           onPress={() => navigation.navigate('Bulletin')}
           color="green"
@@ -33,11 +41,5 @@ const HomeScreen = ({ navigation }: any) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', padding: 20 },
-  title: { fontSize: 24, textAlign: 'center', marginBottom: 30 },
-  btnContainer: { marginBottom: 15 },
-});
 
 export default HomeScreen;

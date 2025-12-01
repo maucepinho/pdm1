@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, StyleSheet, Text } from 'react-native';
+import { View, TextInput, Button, Alert, Text } from 'react-native';
 import axios from 'axios';
+import styles from '../styles/teacherStyles';
 
 const TeacherScreen = () => {
     const [name, setName] = useState('');
@@ -31,11 +32,5 @@ const TeacherScreen = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({ /* Mesmos estilos do StudentScreen */ 
-    container: { flex: 1, padding: 20, justifyContent: 'center' },
-    title: { fontSize: 22, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
-    input: { borderWidth: 1, borderColor: '#ccc', marginBottom: 15, padding: 10, borderRadius: 5 }
-});
 
 export default TeacherScreen;

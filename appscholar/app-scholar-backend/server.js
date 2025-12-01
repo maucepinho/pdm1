@@ -1,5 +1,5 @@
 require('dotenv').config();
-// server.js
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -9,7 +9,6 @@ const app = express();
 const port = 3000;
 
 // --- CONEXÃO COM O POSTGRESQL ---
-// !!! ATENÇÃO: Substitua com suas credenciais !!!
 const pool = new Pool({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
@@ -49,12 +48,13 @@ app.post('/login', async (req, res) => {
 });
 
 // --- ROTAS PARA ALUNOS ---
+// Atualizado para incluir course_id
 app.post('/students', async (req, res) => {
-    const { name, matricula, course } = req.body;
+    const { name, matricula, course_id } = req.body; 
     try {
         const result = await pool.query(
-            'INSERT INTO students (name, matricula, course) VALUES ($1, $2, $3) RETURNING *',
-            [name, matricula, course]
+            'INSERT INTO students (name, matricula, course_id) VALUES ($1, $2, $3) RETURNING *',
+            [name, matricula, course_id]
         );
         res.status(201).json(result.rows[0]);
     } catch (err) {
@@ -146,7 +146,7 @@ app.post('/grades', async (req, res) => {
     }
 });
 
-// 2. Consultar Boletim de um Aluno Específico (API 2)
+// 2. Consultar Boletim de um Aluno Específico
 app.get('/students/:id/bulletin', async (req, res) => {
     const { id } = req.params;
     try {
@@ -170,6 +170,58 @@ app.get('/students/:id/bulletin', async (req, res) => {
         res.status(500).json({ error: 'Erro ao buscar boletim' });
     }
 });
+
+// --- ROTAS PARA CURSOS ---
+
+// 1. Listar Cursos
+app.get('/courses', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM courses ORDER BY id ASC');
+        res.status(200).json(result.rows);
+    } catch (err) {
+        res.status(500).json({ error: 'Erro ao buscar cursos' });
+    }
+});
+
+// 2. Cadastrar Curso
+app.post('/courses', async (req, res) => {
+    const { name, area, duration, coordinator } = req.body;
+    try {
+        const result = await pool.query(
+            'INSERT INTO courses (name, area, duration, coordinator) VALUES ($1, $2, $3, $4) RETURNING *',
+            [name, area, duration, coordinator]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        res.status(500).json({ error: 'Erro ao cadastrar curso' });
+    }
+});
+
+// 3. Atualizar/Editar Curso
+app.put('/courses/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, area, duration, coordinator } = req.body;
+    try {
+        await pool.query(
+            'UPDATE courses SET name=$1, area=$2, duration=$3, coordinator=$4 WHERE id=$5',
+            [name, area, duration, coordinator, id]
+        );
+        res.status(200).json({ message: 'Curso atualizado com sucesso' });
+    } catch (err) {
+        res.status(500).json({ error: 'Erro ao atualizar curso' });
+    }
+});
+
+// 4. Excluir Curso
+app.delete('/courses/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        await pool.query('DELETE FROM courses WHERE id = $1', [id]);
+        res.status(200).json({ message: 'Curso excluído com sucesso' });
+    } catch (err) {
+        res.status(500).json({ error: 'Erro ao excluir (verifique se há alunos vinculados)' });
+    }
+}); 
 
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
