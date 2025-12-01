@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, Alert } from 'react-native';
 import axios from 'axios';
 
-const LoginScreen = () => {
+// 1. Recebemos a prop 'navigation' aqui
+const LoginScreen = ({ navigation }: any) => {
     const [email, setEmail] = useState('');
 
     const handleLogin = async () => {
@@ -13,12 +14,12 @@ const LoginScreen = () => {
         }
 
         try {
-            // ATENÇÃO: Se estiver testando em um celular físico,
-            // substitua 'localhost' pelo IP da sua máquina na rede.
+            // Lembre-se de verificar o IP se estiver no celular físico
             const response = await axios.post('http://localhost:3000/login', { email });
-
-            // Login bem-sucedido
-            Alert.alert("Sucesso", `Bem-vindo, ${response.data.name}!`);
+            
+            // 2. Se o login der certo, navegamos para a Home
+            // Usamos 'replace' para que não dê para voltar para o login com o botão voltar
+            navigation.replace('Home');
 
         } catch (error: any) {
             if (error.response && error.response.status === 404) {
